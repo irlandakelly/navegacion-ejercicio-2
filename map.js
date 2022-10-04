@@ -7,7 +7,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 var marker = L.marker([24.80011621443616, -107.34849863813737]).addTo(map);
 
-var circle = L.circle([51.508, -0.11], {
+var circle = L.circle([24.80666469647626, -107.3953685997845], {
     color: 'red',
     fillColor: '#f03',
     fillOpacity: 0.5,
@@ -22,5 +22,21 @@ var polygon = L.polygon([
 ]).addTo(map);
 
 marker.bindPopup("<b>Hola profe!</b><br>Aquí tiene su casa.").openPopup();
-circle.bindPopup("I am a circle.");
+circle.bindPopup("Primer cuadro de Culiacán.");
 polygon.bindPopup("Aquí está la poderosísima <b>UAdeO<b>.");
+
+//IMPORTANDO LOS PUNTOS EN EL MAPA
+
+var escue = new L.icon ({
+    iconUrl: "school.png",
+    iconSize: [20, 20],
+});
+
+function InsEduCuli (feature, layer) {
+    layer.bindPopup("<h4>"+ feature.properties.nom_estab+"</h4>");
+    layer.setIcon(escue);
+};
+
+var escuela = L.geoJson(intEdu, {
+    onEachFeature: InsEduCuli
+}).addTo(map);
