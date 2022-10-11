@@ -40,3 +40,29 @@ function InsEduCuli (feature, layer) {
 var escuela = L.geoJson(intEdu, {
     onEachFeature: InsEduCuli
 }).addTo(map);
+
+function getColor(d) {
+    return d == 'Sinaloa' ? '#e5e5e5':'#e5e5e5'; 
+}
+
+function estilo(feature) {
+    return {
+        fillColor: getColor(feature.properties.NOM_ENT),
+        weigth: 1,
+        opacity: 1,
+        color: 'black',
+        dashArray: 0,
+        fillOpacity: 0.5
+    };
+}
+
+function popup(feature, layer) {
+    if (feature.properties && feature.properties.NOM_ENT) {
+        layer.bindPopup(feature.properties.NOM_ENT);
+    }
+}
+
+var geojson = L.geoJson(estado, {
+    style: estilo,
+    onEachFeature: popup
+}).addTo(map);
