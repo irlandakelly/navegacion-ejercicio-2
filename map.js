@@ -1,6 +1,6 @@
 var map = L.map('map').setView([51.505, -0.09], 13);
 
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var capaBase = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
@@ -66,3 +66,13 @@ var geojson = L.geoJson(estado, {
     style: estilo,
     onEachFeature: popup
 }).addTo(map);
+var mapaBase = {
+    "Mapa Base OSM":capaBase
+};
+
+var capasAdicionales = {
+    "Escuelas":escuela,
+    "Sinaloa":geojson
+};
+
+L.control.layers(mapaBase, capasAdicionales).addTo(map);
