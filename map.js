@@ -76,3 +76,12 @@ var capasAdicionales = {
 };
 
 L.control.layers(mapaBase, capasAdicionales).addTo(map);
+
+// Esri
+
+const apiKey = "AAPK09c49d70c2e447c8b154b0ec20a4b596tBZqsSQ-Io_HJRNcfj5DaRGK2o5a9ziYlu-qflkX1UoEEdwE5DGwPpQWsrjv3ouD";
+const basemapEnum = "ArcGIS:Streets";
+
+L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+  apiKey: apiKey
+}).addTo(map);
